@@ -1,0 +1,64 @@
+
+
+https://documentation.n-able.com/remote-management/troubleshooting/Content/kb/Take-Control-N-able-How-to-clean-install-the-agent.htm
+
+
+
+RMM
+
+Troubleshooting
+Submit Search
+>
+Take Control (N-able): How to clean install the agent
+Last Modified
+
+Mon 08 Mar 22:14 GMT 2021
+Description
+
+    How to clean install the Take Control (N-able) Agent.
+
+Environment
+
+    N-able Remote Monitoring & Management (RMM)
+        Take Control (N-able)
+    Windows
+
+Solution
+
+    Open the RMM Dashboard
+    Right-click the device and select Edit Server/Workstation
+    Select the Remote Access tab and choose OFF from the Setting drop down list
+        Take Control and Remote Background share the same agent. If Remote Background is also active for the device, we recommend you disable it using the RMM Dashboard to prevent conflicts during this process.
+    Right-click the device and select Run Checks
+    Verify Take Control is "Not Active" in the summary tab
+    Access the remote device by any means at your disposition
+    Go to C:\ProgramFiles\Take Control Agent or C:\Programs(x86)\Take Control Agent and run the "uninstall.exe" if present, otherwise proceed to the next step
+    Completely delete the following folders:
+        C:\ProgramData\GetSupportService_<#INSTANCE_NAME#>
+        C:\ProgramData\GetSupportService_LogicNow;
+        C:\Program Files (x86)\Take Control Agent;
+        C:\Program Files (x86)\Take Control Agent_<#INSTANCE_NAME#>
+    Go to C:\Program Files (x86)\Advanced Monitoring Agent\featureres and delete the following files:
+        feature_13.dll
+        MSP_Connect.exe
+    Open the registry and delete the following key:
+
+HKEY_LOCAL_MACHINE\SOFTWARE\\Multiplicar Negocios\\BeAnyWhere Support Express\\GetSupportService_LOGICnow"
+Value: "Install_Dir"
+
+    Open the RMM Dashboard
+    Right-click the device and select Edit Server/Workstation;
+    Select the Remote Access tab and choose ON from the Setting drop down list
+        If remote Background feature was previously disabled, re-enable it again.
+    Right-click the device and select Run Checks
+
+    Wait a few moments for the remote commands to begin the installation.
+    Ensure you do not have any endpoint content filtering solution or AV blocking any Take Control (N-able) processes.
+    For information about the Ports and URLs that Take Control (N-able) uses, see Communication and Security - Take Control (N-able).
+
+
+
+
+
+
+
